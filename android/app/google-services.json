@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "693473575470",
+    "project_id": "consumer-app-9738e",
+    "storage_bucket": "consumer-app-9738e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:693473575470:android:6b2df4a1452feec13c95bf",
+        "android_client_info": {
+          "package_name": "com.volodeals.consumer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "693473575470-lvtglunh845627h8flfmfm6bojnt5i02.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCgPEvs6S5AW1OHds1AQOvV-y-5M8xQPL8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "693473575470-lvtglunh845627h8flfmfm6bojnt5i02.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
