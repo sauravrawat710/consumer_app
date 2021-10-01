@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:consumer_app/core/utlis/failure.dart';
 import 'package:either_dart/either.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -6,7 +9,7 @@ class AuthRepository {
 
   Stream<User?> get authStateChanges => _firebaseAuth.authStateChanges();
 
-  Future<Either<Exception, UserCredential>> signIn({
+  Future<Either<Failure, UserCredential>> signIn({
     required String email,
     required String password,
   }) async {
@@ -18,11 +21,16 @@ class AuthRepository {
       );
       return Right(_credentials);
     } on FirebaseAuthException catch (e) {
-      throw Left(Exception(e.message));
+      // print(e.message);
+      return Left(
+        Failure(errorType: Error.dialog, errorMessage: e.message!),
+      );
+    } on SocketException {
+      return Left(Failure(errorMessage: 'No Internet Connection'));
     }
   }
 
-  Future<Either<Exception, UserCredential>> signUp({
+  Future<Either<Failure, UserCredential>> signUp({
     required String email,
     required String password,
   }) async {
@@ -34,7 +42,20 @@ class AuthRepository {
       );
       return Right(_credentials);
     } on FirebaseAuthException catch (e) {
-      throw Left(Exception(e.message));
+      return Left(
+        Failure(errorType: Error.dialog, errorMessage: e.message!),
+      );
+    } on SocketException {
+      return Left(Failure(errorMessage: 'No Internet Connection'));
+    }
+  }
+
+  Future<bool> signOut() async {
+    try {
+      await _firebaseAuth.signOut();
+      return true;
+    } on FirebaseAuthException {
+      return false;
     }
   }
 }

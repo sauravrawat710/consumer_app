@@ -1,8 +1,11 @@
+import 'package:consumer_app/auth/logic/auth_cubit/auth_cubit.dart';
 import 'package:consumer_app/core/utlis/locator.dart';
 import 'package:consumer_app/core/utlis/navigation_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:form_field_validator/form_field_validator.dart';
+// ignore: implementation_imports
+import 'package:provider/src/provider.dart';
 import 'login_screen.dart';
 import '../widgets/widgets.dart';
 
@@ -43,6 +46,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final authState = context.watch<AuthCubit>().state;
     return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(
@@ -115,27 +119,28 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         "Creating an account means you're okay with\nour Terms of Service and Privacy Policy",
                         style: Theme.of(context).textTheme.caption),
                     //
-                    CustomButton(
-                      title: 'Sign Up',
-                      onTap: () {
-                        if (_formKey.currentState!.validate()) {
-                          // context
-                          //     .read<AuthenticationCubit>()
-                          //     .signUpWithEmailAndPassword(
-                          //       email: _emailController.text,
-                          //       password: _passwordController.text,
-                          //     );
+                    authState.maybeWhen(
+                      unAuthenticated: () => CustomButton(
+                        title: 'Sign Up',
+                        onTap: () {
+                          if (_formKey.currentState!.validate()) {
+                            context
+                                .read<AuthCubit>()
+                                .signUpWithEmailAndPassword(
+                                  email: _emailController.text,
+                                  password: _passwordController.text,
+                                );
 
-                          // _formKey.currentState!.reset();
-                        }
-                      },
+                            _formKey.currentState!.reset();
+                          }
+                        },
+                      ),
+                      loading: () => const CustomButton(
+                        title: 'Signing Up',
+                        isLoading: true,
+                      ),
+                      orElse: () => Text(authState.toString()),
                     ),
-                    //
-                    // buildSocialLoginButton(
-                    //   onPressed: () {
-                    //     context.read<AuthenticationCubit>().signUpWithGoogle();
-                    //   },
-                    // ),
                     //
                     GestureDetector(
                       onTap: () {

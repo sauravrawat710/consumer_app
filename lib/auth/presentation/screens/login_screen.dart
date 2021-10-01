@@ -1,11 +1,16 @@
+import 'package:consumer_app/auth/logic/auth_cubit/auth_cubit.dart';
 import 'package:consumer_app/auth/presentation/screens/screens.dart';
 import 'package:consumer_app/auth/presentation/widgets/widgets.dart';
 import 'package:consumer_app/core/presentation/widgets/widgets.dart';
+import 'package:consumer_app/core/utlis/failure.dart';
 import 'package:consumer_app/core/utlis/locator.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:consumer_app/core/utlis/navigation_service.dart';
+// ignore: implementation_imports
+import 'package:provider/src/provider.dart';
 
 class LoginScreen extends StatefulWidget {
   static const routeName = '/login';
@@ -37,9 +42,17 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: SingleChildScrollView(
+    final authState = context.watch<AuthCubit>().state;
+
+    return Scaffold(
+      body: BlocListener<AuthCubit, AuthState>(
+        listener: (context, state) {
+          state.maybeWhen(
+            error: (failure) => Failure.handleError(context, failure),
+            orElse: () {},
+          );
+        },
+        child: SingleChildScrollView(
           child: Stack(
             children: [
               Form(
@@ -85,26 +98,27 @@ class _LoginScreenState extends State<LoginScreen> {
                     //
                     SizedBox(height: 10.h),
                     //
-                    CustomButton(
-                      title: 'Log In',
-                      onTap: () {
-                        if (_formKey.currentState!.validate()) {
-                          // context
-                          //     .read<AuthenticationCubit>()
-                          //     .loginWithEmailAndPassword(
-                          //       email: _emailController.text,
-                          //       password: _passwordController.text,
-                          //     );
-                          // _formKey.currentState?.reset();
-                        }
-                      },
+                    authState.maybeWhen(
+                      loading: () => const CustomButton(
+                        title: 'Logging in',
+                        isLoading: true,
+                      ),
+                      orElse: () => CustomButton(
+                        title: 'Log In',
+                        onTap: () {
+                          if (_formKey.currentState!.validate()) {
+                            context
+                                .read<AuthCubit>()
+                                .signInWithEmailAndPassword(
+                                  email: _emailController.text,
+                                  password: _passwordController.text,
+                                );
+                            _formKey.currentState?.reset();
+                          }
+                        },
+                      ),
                     ),
-                    //
-                    // buildSocialLoginButton(
-                    //   onPressed: () {
-                    //     context.read<AuthenticationCubit>().signUpWithGoogle();
-                    //   },
-                    // ),
+
                     //
                     GestureDetector(
                       onTap: () {

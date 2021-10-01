@@ -1,8 +1,11 @@
 import 'package:consumer_app/auth/presentation/screens/screens.dart';
+import 'package:consumer_app/bloc_observer.dart';
 import 'package:consumer_app/core/presentation/screens/screens.dart';
 import 'package:consumer_app/core/utlis/locator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Init {
@@ -18,7 +21,9 @@ class Init {
   static late final bool _userSignedIn;
 
   static Future<void> _registerServices() async {
+    WidgetsFlutterBinding.ensureInitialized();
     ServiceLocator.registerServices();
+    Bloc.observer = MyBlocObserver();
     _prefs = await SharedPreferences.getInstance();
     await Firebase.initializeApp();
     _firebaseAuth = FirebaseAuth.instance;
@@ -27,6 +32,8 @@ class Init {
   static Future<void> _loadSettings() async {
     _userSeenIntro = _prefs.getBool('USER_SEEN_INTRO') ?? false;
     _userSignedIn = _firebaseAuth.currentUser != null;
+    // ignore: avoid_print
+    print("User ==> ${_firebaseAuth.currentUser?.email}");
   }
 
   static Future<String> _loadInitialRoute() async {
