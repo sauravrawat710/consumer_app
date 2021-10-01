@@ -3,6 +3,8 @@ import 'package:get_it/get_it.dart';
 
 final locator = GetIt.instance;
 
-void registerServices() {
-  locator.registerLazySingleton<NavigationService>(() => NavigationService());
+class ServiceLocator {
+  static void registerServices() {
+    locator.registerLazySingleton<NavigationService>(() => NavigationService());
+  }
 }

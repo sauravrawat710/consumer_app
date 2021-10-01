@@ -18,7 +18,7 @@ class Init {
   static late final bool _userSignedIn;
 
   static Future<void> _registerServices() async {
-    registerServices();
+    ServiceLocator.registerServices();
     _prefs = await SharedPreferences.getInstance();
     await Firebase.initializeApp();
     _firebaseAuth = FirebaseAuth.instance;

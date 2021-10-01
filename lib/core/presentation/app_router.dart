@@ -7,6 +7,9 @@ import 'package:flutter/material.dart';
 class AppRouter {
   Route onGenerateRoute(RouteSettings routeSettings) {
     switch (routeSettings.name) {
+      case IntroScreen.routeName:
+        return MaterialPageRoute(builder: (_) => const IntroScreen());
+
       case LoginScreen.routeName:
         return MaterialPageRoute(builder: (_) => const LoginScreen());
 
@@ -15,9 +18,6 @@ class AppRouter {
 
       case HomeScreen.routeName:
         return MaterialPageRoute(builder: (_) => const HomeScreen());
-
-      case IntroScreen.routeName:
-        return MaterialPageRoute(builder: (_) => const IntroScreen());
 
       default:
         return MaterialPageRoute(

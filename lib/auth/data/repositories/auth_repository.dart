@@ -6,31 +6,33 @@ class AuthRepository {
 
   Stream<User?> get authStateChanges => _firebaseAuth.authStateChanges();
 
-  Future<Either<Exception, String>> signIn({
+  Future<Either<Exception, UserCredential>> signIn({
     required String email,
     required String password,
   }) async {
     try {
-      await _firebaseAuth.signInWithEmailAndPassword(
+      UserCredential _credentials =
+          await _firebaseAuth.signInWithEmailAndPassword(
         email: email,
         password: password,
       );
-      return const Right('Signed In');
+      return Right(_credentials);
     } on FirebaseAuthException catch (e) {
       throw Left(Exception(e.message));
     }
   }
 
-  Future<Either<Exception, String>> signUp({
+  Future<Either<Exception, UserCredential>> signUp({
     required String email,
     required String password,
   }) async {
     try {
-      await _firebaseAuth.createUserWithEmailAndPassword(
+      UserCredential _credentials =
+          await _firebaseAuth.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
-      return const Right('Signed up');
+      return Right(_credentials);
     } on FirebaseAuthException catch (e) {
       throw Left(Exception(e.message));
     }
