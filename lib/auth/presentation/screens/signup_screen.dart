@@ -1,6 +1,6 @@
-import 'package:consumer_app/auth/logic/auth_cubit/auth_cubit.dart';
-import 'package:consumer_app/core/utlis/locator.dart';
-import 'package:consumer_app/core/utlis/navigation_service.dart';
+import '../../logic/auth_cubit/auth_cubit.dart';
+import '../../../core/utlis/locator.dart';
+import '../../../core/utlis/navigation_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:form_field_validator/form_field_validator.dart';
@@ -14,7 +14,7 @@ import '../../../core/presentation/widgets/rounded_input_field.dart';
 import 'screens.dart';
 
 class SignUpScreen extends StatefulWidget {
-  static const routeName = '/signup';
+  static const routeName = 'signup';
 
   const SignUpScreen({Key? key}) : super(key: key);
   @override
@@ -120,7 +120,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         style: Theme.of(context).textTheme.caption),
                     //
                     authState.maybeWhen(
-                      unAuthenticated: () => CustomButton(
+                      loading: () => const CustomButton(
+                        title: 'Signing Up',
+                        isLoading: true,
+                      ),
+                      orElse: () => CustomButton(
                         title: 'Sign Up',
                         onTap: () {
                           if (_formKey.currentState!.validate()) {
@@ -135,11 +139,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           }
                         },
                       ),
-                      loading: () => const CustomButton(
-                        title: 'Signing Up',
-                        isLoading: true,
-                      ),
-                      orElse: () => Text(authState.toString()),
                     ),
                     //
                     GestureDetector(

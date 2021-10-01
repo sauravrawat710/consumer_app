@@ -1,9 +1,9 @@
-import 'package:consumer_app/auth/data/repositories/auth_repository.dart';
-import 'package:consumer_app/auth/logic/auth_cubit/auth_cubit.dart';
-import 'package:consumer_app/core/init.dart';
-import 'package:consumer_app/core/presentation/app_router.dart';
-import 'package:consumer_app/core/utlis/locator.dart';
-import 'package:consumer_app/core/utlis/navigation_service.dart';
+import 'auth/data/repositories/auth_repository.dart';
+import 'auth/logic/auth_cubit/auth_cubit.dart';
+import 'core/init.dart';
+import 'core/presentation/app_router.dart';
+import 'core/utlis/locator.dart';
+import 'core/utlis/navigation_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

@@ -1,8 +1,9 @@
 import 'dart:io';
 
-import 'package:consumer_app/core/utlis/failure.dart';
 import 'package:either_dart/either.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+
+import '../../../core/utlis/failure.dart';
 
 class AuthRepository {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;

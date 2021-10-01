@@ -1,10 +1,10 @@
 import 'package:bloc/bloc.dart';
-import 'package:consumer_app/auth/data/repositories/auth_repository.dart';
-import 'package:consumer_app/auth/presentation/screens/login_screen.dart';
-import 'package:consumer_app/core/presentation/screens/home_screen.dart';
-import 'package:consumer_app/core/utlis/failure.dart';
-import 'package:consumer_app/core/utlis/locator.dart';
-import 'package:consumer_app/core/utlis/navigation_service.dart';
+import '../../data/repositories/auth_repository.dart';
+import '../../presentation/screens/login_screen.dart';
+import '../../../core/presentation/screens/home_screen.dart';
+import '../../../core/utlis/failure.dart';
+import '../../../core/utlis/locator.dart';
+import '../../../core/utlis/navigation_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 

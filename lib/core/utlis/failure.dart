@@ -1,10 +1,7 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
-import 'package:consumer_app/core/utlis/locator.dart';
-import 'package:consumer_app/core/utlis/navigation_service.dart';
 import 'package:flash/flash.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 enum Error { popup, dialog, snackbar }
 

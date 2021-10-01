@@ -1,11 +1,11 @@
-import 'package:consumer_app/auth/presentation/screens/login_screen.dart';
-import 'package:consumer_app/core/utlis/locator.dart';
-import 'package:consumer_app/core/utlis/navigation_service.dart';
+import '../../../auth/presentation/screens/login_screen.dart';
+import '../../utlis/locator.dart';
+import '../../utlis/navigation_service.dart';
 import 'package:flutter/material.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 
 class IntroScreen extends StatelessWidget {
-  static const routeName = '/intro';
+  static const routeName = 'intro';
   const IntroScreen({Key? key}) : super(key: key);
 
   @override

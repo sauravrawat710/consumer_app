@@ -1,7 +1,7 @@
-import 'package:consumer_app/auth/presentation/screens/screens.dart';
-import 'package:consumer_app/bloc_observer.dart';
-import 'package:consumer_app/core/presentation/screens/screens.dart';
-import 'package:consumer_app/core/utlis/locator.dart';
+import '../auth/presentation/screens/screens.dart';
+import '../bloc_observer.dart';
+import 'presentation/screens/screens.dart';
+import 'utlis/locator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';

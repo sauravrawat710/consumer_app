@@ -1,7 +1,7 @@
-import 'package:consumer_app/auth/presentation/screens/login_screen.dart';
-import 'package:consumer_app/auth/presentation/screens/screens.dart';
-import 'package:consumer_app/core/presentation/screens/home_screen.dart';
-import 'package:consumer_app/core/presentation/screens/screens.dart';
+import '../../auth/presentation/screens/login_screen.dart';
+import '../../auth/presentation/screens/screens.dart';
+import 'screens/home_screen.dart';
+import 'screens/screens.dart';
 import 'package:flutter/material.dart';
 
 class AppRouter {
