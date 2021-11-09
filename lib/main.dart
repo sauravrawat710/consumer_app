@@ -1,3 +1,6 @@
+import 'package:consumer_app/core/logic/home_cubit.dart';
+import 'package:consumer_app/profile/logic/profile_cubit.dart';
+
 import 'auth/data/repositories/auth_repository.dart';
 import 'auth/logic/auth_cubit/auth_cubit.dart';
 import 'core/init.dart';
@@ -34,6 +37,11 @@ class MyApp extends StatelessWidget {
                 context.read<AuthRepository>(),
               ),
             ),
+            BlocProvider(create: (_) => HomeCubit()),
+            BlocProvider(
+              create: (_) => ProfileCubit(),
+              lazy: false,
+            )
           ],
           child: MaterialApp(
             debugShowCheckedModeBanner: false,

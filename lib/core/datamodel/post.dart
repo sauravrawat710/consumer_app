@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class Post {
   final String? PID;
   final String photoURL;
-  final String authorUID;
+  final String? authorUID;
   final String authorDPURL;
   final String createTimeStamp;
   final postCat cat;
@@ -15,7 +15,7 @@ class Post {
     @required this.authorUID = "",
     @required this.authorDPURL = "",
     @required this.createTimeStamp = "",
-    @required this.cat = postCat.all,
+    @required this.cat = postCat.services,
   });
 
   factory Post.fromMap(Map data) {
@@ -34,7 +34,7 @@ class Post {
     this.authorUID = "",
     this.authorDPURL = "",
     this.createTimeStamp = "",
-    this.cat = postCat.all,
+    this.cat = postCat.services,
   });
 
   // const Post.empty() {
@@ -54,7 +54,7 @@ class Post {
       'authorUID': authorUID,
       'authorDPURL': authorDPURL,
       'createTimeStamp': createTimeStamp,
-      'tag': cat.index
+      'cat': cat.index
     };
   }
 }

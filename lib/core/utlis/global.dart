@@ -1,4 +1,4 @@
-enum postCat { all, food, electronics, clothing, services, groceries }
+enum postCat { food, electronics, clothing, services, groceries }
 const List<String> categories = [
   "All",
   "Food",

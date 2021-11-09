@@ -1,3 +1,6 @@
+import 'package:consumer_app/core/utlis/active_user.dart';
+import 'package:get_it/get_it.dart';
+
 import '../auth/presentation/screens/screens.dart';
 import '../bloc_observer.dart';
 import 'presentation/screens/screens.dart';
@@ -32,6 +35,11 @@ class Init {
   static Future<void> _loadSettings() async {
     _userSeenIntro = _prefs.getBool('USER_SEEN_INTRO') ?? false;
     _userSignedIn = _firebaseAuth.currentUser != null;
+    if (_userSignedIn) {
+      await GetIt.instance
+          .get<ActiveUser>()
+          .populateActiveUser(_firebaseAuth.currentUser!.uid);
+    }
     // ignore: avoid_print
     print("User ==> ${_firebaseAuth.currentUser?.email}");
   }

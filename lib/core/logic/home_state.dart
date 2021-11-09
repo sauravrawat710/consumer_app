@@ -12,7 +12,7 @@ class HomeState extends Equatable {
       this.posts = const [],
       this.catSelected = 0});
 
-  HomeState newState({
+  HomeState copyWith({
     HomeStatus? newStatus,
     List<Post>? newPosts,
     int? newCatSel,
@@ -24,5 +24,10 @@ class HomeState extends Equatable {
   }
 
   @override
-  List<Object> get props => [status, catSelected];
+  List<Object> get props => [status, catSelected, posts.length];
+
+  bool? isLoading() {
+    print(posts.length);
+    return status == HomeStatus.loading;
+  }
 }

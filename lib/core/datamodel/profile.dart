@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 class Profile {
   String? profileName;
   String? profileDesc;
-  List<String>? profilePhotosURL;
+  List<dynamic>? profilePhotosURL;
   String? profileDPURL;
   String? profileID;
   String? profileAddress;
   String? profileContact;
-  List<String>? postsPIDList;
+  List<dynamic>? postsPIDList;
   double? lat;
   double? long;
 
